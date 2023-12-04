@@ -1,11 +1,14 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.Web 
 
 <div class="upper-half">
-    <button class="button" @onclick="OfferRide">Offer a ride</button>
+    <button class="button" @onclick="OfferRide" >Offer a ride</button>
 </div>
+<hr />
 <div class="lower-half">
-    <button class="button" @onclick="SearchRide">Search for a ride</button>
+    <button class="button" @onclick="SearchRide" >Search for a ride</button>
 </div>
 
 <style>
@@ -19,24 +22,19 @@
 
 .button {
     padding: 10px 20px;
-    font-size: 100px;
+    font-size: 80px;
     cursor: pointer;
-    background-color: lawngreen;
-
-    
-
+    background-image: linear-gradient(90deg, rgb(144, 245, 66) 20%, rgb(87, 166, 27) 70%);
 }
 </style>
 
 @code {
     private void OfferRide(MouseEventArgs e)
     {
-        // Hier kannst du die Logik für den Button-Klick hinzufügen
-        // Zum Beispiel: Console.WriteLine("Button wurde geklickt!");
+        NavigationManager.NavigateTo("OfferRide");
     }
     private void SearchRide(MouseEventArgs e)
     {
-        // Hier kannst du die Logik für den Button-Klick hinzufügen
-        // Zum Beispiel: Console.WriteLine("Button wurde geklickt!");
+        NavigationManager.NavigateTo("SearchForRide");
     }
 }
