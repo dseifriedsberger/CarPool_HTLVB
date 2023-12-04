@@ -1,32 +1,29 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Components.Web 
 
-<div class="upper-half">
-    <button class="button" @onclick="OfferRide">Offer a ride</button>
-</div>
-<div class="lower-half">
-    <button class="button" @onclick="SearchRide">Search for a ride</button>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center; 
+        }
 
-<style>
-    .upper-half,
-.lower-half {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-}
+        h2 {
+            text-align: center; 
+        }
 
-.button {
-    padding: 10px 20px;
-    font-size: 100px;
-    cursor: pointer;
-    background-color: lawngreen;
-
-    
-
-}
-</style>
+    </style>
+    </head>
+    <body >
+        <h1>Carpool</h1>
+        <h2 style="line-height: 200px" ><a href="https://www.example.com">Offer a Ride</a></h2>
+        <h2><a href="https://www.example.com">Search for a Ride</a></h2>
+    </body>
+    </html>
 
 @code {
     private void OfferRide(MouseEventArgs e)
