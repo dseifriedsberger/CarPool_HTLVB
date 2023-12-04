@@ -1,0 +1,42 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web 
+
+<div class="upper-half">
+    <button class="button" @onclick="OfferRide">Offer a ride</button>
+</div>
+<div class="lower-half">
+    <button class="button" @onclick="SearchRide">Search for a ride</button>
+</div>
+
+<style>
+    .upper-half,
+.lower-half {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 100px;
+    cursor: pointer;
+    background-color: lawngreen;
+
+    
+
+}
+</style>
+
+@code {
+    private void OfferRide(MouseEventArgs e)
+    {
+        // Hier kannst du die Logik für den Button-Klick hinzufügen
+        // Zum Beispiel: Console.WriteLine("Button wurde geklickt!");
+    }
+    private void SearchRide(MouseEventArgs e)
+    {
+        // Hier kannst du die Logik für den Button-Klick hinzufügen
+        // Zum Beispiel: Console.WriteLine("Button wurde geklickt!");
+    }
+}
