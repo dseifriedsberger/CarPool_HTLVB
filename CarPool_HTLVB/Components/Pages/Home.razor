@@ -7,43 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Image Example</title>
-    <style>
-        h1{
-            text-align: center;
-        }
-
-        .pageStuff {
-            background-image: url('/wwwroot/Background.png');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        .upper-half,
-        .lower-half {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 10vh;
-        }
-
-        .button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <div class="pageStuff"> 
-    <h1>Carpool</h1>
+    <h3>Carpool</h3>
     <div class="upper-half" style="border:hidden">
         <button class="button" @onclick="OfferRide" >Offer a ride</button>
     </div>
