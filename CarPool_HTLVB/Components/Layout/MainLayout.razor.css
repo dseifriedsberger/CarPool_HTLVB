@@ -9,7 +9,7 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(144, 245, 66) 20%, rgb(87, 166, 27) 70%);
+    background: linear-gradient(90deg, rgba(27,127,147,1) 0%, rgba(1,125,184,1) 50%, rgba(1,120,220,1) 100%);
 }
 
 .top-row {
@@ -18,7 +18,7 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
-    background-image: linear-gradient(90deg, rgb(144, 245, 66) 20%, rgb(87, 166, 27) 70%);
+    background: linear-gradient(90deg, rgba(27,127,147,1) 0%, rgba(1,125,184,1) 0%, rgba(27,127,147,1) 100%);
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {
