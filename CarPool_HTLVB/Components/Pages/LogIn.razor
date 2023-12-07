@@ -1,45 +1,57 @@
 ﻿@page "/LogIn"
 @inject AuthService authService 
+@inject IUser CurrentUser
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
+
 <h3>Login</h3>
-
-@* <EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="loginForm">
-    <DataAnnotationsValidator />
-    <ValidationSummary /> *@
-
-    <div>
-        <label for="username">Benutzername:</label>
-        <input id="username" @bind="user.Username" />
+  
+    <div> 
+        <input class="inputTXT" placeholder="E-Mail Adresse" id="username" @bind="user.EMailAddress" />
     </div>
 
     <div>
-        <label for="password">Passwort:</label>
-        <input id="password" @bind="user.Password" type="password" />
+    <input class="inputTXT" placeholder="Password" id="password" @bind="user.Password" type="password" />
     </div>
+    <button class="button" @onclick="HandleValidSubmit">Anmelden</button>
+    <hr />
+    <button class="button" @onclick="Registrate">Registrieren</button>
+<style>
+    .button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
 
-@*     <button type="submit" @onclick="HandleValidSubmit">Anmelden</button>*@
-    <button type="submit" @onclick="HandleValidSubmit">Anmelden</button>
-@* </EditForm> *@
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
 
 @code {
     private User user = new User();
-     
+
 
     private void HandleValidSubmit()
-    { 
-
-        if (authService.Authenticate(user))
-        {
-            // Erfolgreiche Authentifizierung: Weiterleitung oder andere Aktionen.
-            // Zum Beispiel: Navigation zur geschützten Seite.
-            NavigationManager.NavigateTo("/Weather");
+    {
+        IUser curuser = CurrentUser;
+        if (authService.Authenticate(user, out curuser))
+        {  
+            CurrentUser.FirstName = curuser.FirstName; 
+            NavigationManager.NavigateTo("/Welcome");
         }
         else
-        {
-            // Fehlerhafte Anmeldeinformationen: Zeigen Sie eine Fehlermeldung an.
-            // Beispielhaft: Einfache Konsolenausgabe.
+        { 
             Console.WriteLine("Anmeldung fehlgeschlagen");
+            NavigationManager.NavigateTo("/LoginFailed");
         }
+    }
+    private void Registrate()
+    {
+        NavigationManager.NavigateTo("/Registration");
     }
 }

@@ -1,0 +1,44 @@
+﻿@page "/Registration"
+<h3>Registrierung</h3>
+
+<div>
+    <label class="labelTXT">Dein Vorname:</label>
+    <input class="inputTXT" placeholder="Vorname" @bind="user.FirstName" />
+</div>
+<div>
+    <label class="labelTXT">Deine E-Mail Addrese:</label>
+    <input class="inputTXT" placeholder="E-Mail Adresse" @bind="user.EMailAddress" />
+</div>
+<div>
+    <label class="labelTXT">Bitte bestätige deine E-Mail Addresse:</label>
+    <input class="inputTXT" placeholder="E-Mail Adresse bestätigen" @bind="ConfirmEMail" />
+</div>
+<div>
+    <label class="labelTXT">Dein Passwort</label>
+    <input class="inputTXT" placeholder="E-Mail Adresse" @bind="user.Password" type="password" />
+</div>
+<div>
+    <label class="labelTXT">Bitte bestätige dein Passwort:</label>
+    <input class="inputTXT" placeholder="Passwort bestätigen" @bind="ConfirmPassword" type="password" />
+</div>
+<hr />
+<button class="button" @onclick="Registrate" disabled="IsButtonDisabled">Registrieren</button>
+
+@code {
+    private User user = new(); 
+    private string? ConfirmEMail; 
+    private string? ConfirmPassword; 
+    private void Registrate()
+    {
+        if (!IsButtonDisabled())
+        {
+            
+        }
+
+    }
+    private bool IsButtonDisabled()
+    {
+        return string.IsNullOrEmpty(user.FirstName) ||  string.IsNullOrEmpty(user.EMailAddress) || 
+        string.IsNullOrEmpty(ConfirmEMail) || string.IsNullOrEmpty(user.Password) ||  string.IsNullOrEmpty(ConfirmPassword);
+    }
+}

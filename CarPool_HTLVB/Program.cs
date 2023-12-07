@@ -1,3 +1,5 @@
+using Blazorise; 
+using Blazorise.Icons.FontAwesome;
 using CarPool_HTLVB;
 using CarPool_HTLVB.Components;
 
@@ -10,6 +12,13 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthService>();
 
+builder.Services.AddScoped<AuthService>();
+//builder.Services.AddScoped<IUser, CurUser>();
+builder.Services.AddSingleton<IUser, CurUser>();
+
+builder.Services
+    .AddBlazorise() 
+    .AddFontAwesomeIcons();
 
 var app = builder.Build();
 
@@ -26,10 +35,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
-
-// Konfiguration des Routers
-//app.MapBlazorHub();
-//app.MapFallbackToPage("/Components/Home"); 
+ 
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
