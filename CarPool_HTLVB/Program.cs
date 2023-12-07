@@ -28,7 +28,7 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 // Konfiguration des Routers
-app.MapBlazorHub();
+//app.MapBlazorHub();
 //app.MapFallbackToPage("/Components/Home"); 
 
 app.MapRazorComponents<App>()

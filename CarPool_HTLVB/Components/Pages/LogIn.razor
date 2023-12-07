@@ -1,37 +1,38 @@
 ﻿@page "/LogIn"
 @inject AuthService authService 
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 <h3>Login</h3>
 
-<EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="loginForm">
+@* <EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="loginForm">
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    <ValidationSummary /> *@
 
     <div>
         <label for="username">Benutzername:</label>
-        <InputText id="username" @bind-Value="user.Username" />
+        <input id="username" @bind="user.Username" />
     </div>
 
     <div>
         <label for="password">Passwort:</label>
-        <InputText id="password" @bind-Value="user.Password" type="password" />
+        <input id="password" @bind="user.Password" type="password" />
     </div>
 
-    <button type="submit">Anmelden</button>
-</EditForm>
+@*     <button type="submit" @onclick="HandleValidSubmit">Anmelden</button>*@
+    <button type="submit" @onclick="HandleValidSubmit">Anmelden</button>
+@* </EditForm> *@
 
 @code {
     private User user = new User();
 
     private void HandleValidSubmit()
-    {
-        user.Username = "dseif";
-        user.Password = "1234";
+    { 
+
         if (authService.Authenticate(user))
         {
             // Erfolgreiche Authentifizierung: Weiterleitung oder andere Aktionen.
             // Zum Beispiel: Navigation zur geschützten Seite.
-            NavigationManager.NavigateTo("/Home");
+            NavigationManager.NavigateTo("/Weather");
         }
         else
         {
