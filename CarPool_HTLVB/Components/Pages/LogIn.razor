@@ -35,20 +35,21 @@
 @code {
     private User user = new User();
 
-
     private void HandleValidSubmit()
     {
         IUser curuser = CurrentUser;
         if (authService.Authenticate(user, out curuser))
-        {  
-            CurrentUser.FirstName = curuser.FirstName; 
+        {
+            CurrentUser.FirstName = curuser.FirstName;
+            CurrentUser.UserID = curuser.UserID;
             NavigationManager.NavigateTo("/Welcome");
         }
         else
-        { 
+        {
             Console.WriteLine("Anmeldung fehlgeschlagen");
             NavigationManager.NavigateTo("/LoginFailed");
-        }
+        } 
+
     }
     private void Registrate()
     {

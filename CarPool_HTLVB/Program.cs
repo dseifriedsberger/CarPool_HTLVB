@@ -9,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor(); 
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<RegisService>();
 
-builder.Services.AddScoped<AuthService>();
 //builder.Services.AddScoped<IUser, CurUser>();
 builder.Services.AddSingleton<IUser, CurUser>();
 

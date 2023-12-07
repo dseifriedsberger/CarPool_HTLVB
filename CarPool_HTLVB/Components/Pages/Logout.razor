@@ -1,0 +1,15 @@
+﻿@page "/Logout" 
+@inject IUser CurrentUser
+@inject NavigationManager NaviManager
+<h3>It's quiet here without you.... </h3> 
+@code {
+    protected override void OnInitialized()
+    {   
+        if(CurrentUser.UserID != null)
+        { 
+            CurrentUser.FirstName = null;
+            CurrentUser.UserID = null;
+            NaviManager.NavigateTo("/Logout");
+        } 
+    }
+}

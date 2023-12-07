@@ -1,17 +1,24 @@
-﻿@page "/Registration"
+﻿@inject RegisService RegistrationService
+@inject NavigationManager NaviMangager
+@page "/Registration"
 <h3>Registrierung</h3>
+@rendermode InteractiveServer
 
 <div>
     <label class="labelTXT">Dein Vorname:</label>
-    <input class="inputTXT" placeholder="Vorname" @bind="user.FirstName" />
+    <input class="inputTXT" type ="text" placeholder="Vorname" @bind="user.FirstName" />
+</div>
+<div>
+    <label class="labelTXT">Dein Nachname:</label>
+    <input class="inputTXT" type="text" placeholder="Nachname" @bind="user.LastName" />
 </div>
 <div>
     <label class="labelTXT">Deine E-Mail Addrese:</label>
-    <input class="inputTXT" placeholder="E-Mail Adresse" @bind="user.EMailAddress" />
-</div>
+    <input class="inputTXT" type="text" placeholder="E-Mail Adresse" @bind="user.EMailAddress" />
+</div> 
 <div>
     <label class="labelTXT">Bitte bestätige deine E-Mail Addresse:</label>
-    <input class="inputTXT" placeholder="E-Mail Adresse bestätigen" @bind="ConfirmEMail" />
+    <input class="inputTXT" type="text" placeholder="E-Mail Adresse bestätigen" @bind="ConfirmEMail" />
 </div>
 <div>
     <label class="labelTXT">Dein Passwort</label>
@@ -22,7 +29,7 @@
     <input class="inputTXT" placeholder="Passwort bestätigen" @bind="ConfirmPassword" type="password" />
 </div>
 <hr />
-<button class="button" @onclick="Registrate" disabled="IsButtonDisabled">Registrieren</button>
+<button class="button" @onclick="Registrate" disabled="@IsButtonDisabled">Registrieren</button>
 
 @code {
     private User user = new(); 
@@ -32,13 +39,23 @@
     {
         if (!IsButtonDisabled())
         {
-            
+            if(RegistrationService.RegistrateUser(user))
+            {
+                NaviMangager.NavigateTo("/LogIn");
+            }
+            else
+            {
+                NaviMangager.NavigateTo("/Registration");
+            }
+
         }
 
     }
     private bool IsButtonDisabled()
     {
-        return string.IsNullOrEmpty(user.FirstName) ||  string.IsNullOrEmpty(user.EMailAddress) || 
-        string.IsNullOrEmpty(ConfirmEMail) || string.IsNullOrEmpty(user.Password) ||  string.IsNullOrEmpty(ConfirmPassword);
+        return (string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.EMailAddress) ||
+        string.IsNullOrWhiteSpace(ConfirmEMail) || string.IsNullOrWhiteSpace(user.Password) || string.IsNullOrWhiteSpace(ConfirmPassword)) && user.EMailAddress == ConfirmEMail && user.Password == ConfirmPassword && user.EMailAddress.Contains("@");
+
     }
+
 }

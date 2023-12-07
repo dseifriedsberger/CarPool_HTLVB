@@ -10,10 +10,17 @@
             @if ((CurrentUser as CurUser)?.FirstName != null)
             {
                 <label>Hallo, @CurrentUser.FirstName </label>
-            } 
-           <NavLink class="nav-link" href="LogIn">
-                <img src="user-solid.svg" alt="AltTXT:LogInIcon" style="cursor: pointer">
-            </NavLink>  
+                <NavLink class="nav-link" href="Logout">
+                    <span aria-hidden="true"></span> Logout
+                </NavLink>
+            }
+            else
+            {
+               <NavLink class="nav-link" href="LogIn"> 
+                    <span aria-hidden="true"></span> Login
+                </NavLink>  
+            }
+                
         </div>
         <article class="content px-4">
             @Body

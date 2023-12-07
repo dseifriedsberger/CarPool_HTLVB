@@ -8,7 +8,7 @@ namespace CarPool_HTLVB.Components
         public bool Authenticate(User user, out IUser curUser)
         {
             IUser userToStore = new User();
-            string sql = $"SELECT UserName, Password, Firstname, SchoolClass FROM Users WHERE UserName = '{user.EMailAddress}'";
+            string sql = $"SELECT UserID, FirstName, LastName, EMail, Password, SchoolClass, Teacher, MobileNumber FROM Users WHERE EMail = '{user.EMailAddress}'";
             MySqlConnection connection = new MySqlConnection("Server=localhost;Database=CARPOOL;Uid=root;Pwd=1234;");
             MySqlCommand command = new MySqlCommand(sql, connection);
             try
@@ -17,11 +17,19 @@ namespace CarPool_HTLVB.Components
                 MySqlDataReader reader = command.ExecuteReader(); 
                 while(reader.Read())
                 {
-                    
-                    userToStore.EMailAddress = reader["UserName"].ToString();
+                    userToStore.UserID = Convert.ToInt32(reader["UserID"]); 
+                    userToStore.FirstName = reader["FirstName"].ToString();
+                    userToStore.LastName = reader["LastName"].ToString();
+                    userToStore.EMailAddress = reader["EMail"].ToString();
                     userToStore.Password = reader["Password"].ToString();
-                    userToStore.FirstName = reader["Firstname"].ToString();
                     userToStore.SchoolClass = reader["SchoolClass"].ToString();
+                    if (reader["Teacher"].ToString()=="1") {
+                        userToStore.Teacher = true;
+                    }
+                    else {
+                        userToStore.Teacher = false;
+                    }
+                    userToStore.MobileNumber = reader["MobileNumber"].ToString();
 
                     UserList.Add(userToStore);
                 }
