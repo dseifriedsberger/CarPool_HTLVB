@@ -1,9 +1,41 @@
 ﻿@page "/LogIn"
-
+@using MySqlConnector;
 <h3>LogIn</h3>
-<hr/>
+<hr/> 
+    <ul> 
+        Username: <input @bind="username" />
+    </ul> 
+    <ul>
+        Password: <input @bind="password" />
+    </ul>
+    <ul>
+        <button @onclick="TryLogin">Log In</button>
+    </ul>
 
-
+ 
 @code {
+    private string? username;
+    private string? password;
 
+    private void TryLogin()
+    {
+        if(!string.IsNullOrWhiteSpace(username)&&!string.IsNullOrWhiteSpace(password))
+        {
+            //sql sachen
+            MySqlConnection conn = new MySqlConnection("Server=localhost;Database=CarPool;Uid=root;Pwd=1234;");
+            
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                
+            }
+        }
+    }
 }
