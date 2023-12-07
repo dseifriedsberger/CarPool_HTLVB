@@ -1,41 +1,43 @@
 ﻿@page "/LogIn"
-@using MySqlConnector;
-<h3>LogIn</h3>
-<hr/> 
-    <ul> 
-        Username: <input @bind="username" />
-    </ul> 
-    <ul>
-        Password: <input @bind="password" />
-    </ul>
-    <ul>
-        <button @onclick="TryLogin">Log In</button>
-    </ul>
+@inject AuthService authService 
+@inject NavigationManager NavigationManager
+<h3>Login</h3>
 
- 
+<EditForm Model="@user" OnValidSubmit="@HandleValidSubmit" FormName="loginForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="username">Benutzername:</label>
+        <InputText id="username" @bind-Value="user.Username" />
+    </div>
+
+    <div>
+        <label for="password">Passwort:</label>
+        <InputText id="password" @bind-Value="user.Password" type="password" />
+    </div>
+
+    <button type="submit">Anmelden</button>
+</EditForm>
+
 @code {
-    private string? username;
-    private string? password;
+    private User user = new User();
 
-    private void TryLogin()
+    private void HandleValidSubmit()
     {
-        if(!string.IsNullOrWhiteSpace(username)&&!string.IsNullOrWhiteSpace(password))
+        user.Username = "dseif";
+        user.Password = "1234";
+        if (authService.Authenticate(user))
         {
-            //sql sachen
-            MySqlConnection conn = new MySqlConnection("Server=localhost;Database=CarPool;Uid=root;Pwd=1234;");
-            
-            try
-            {
-
-            }
-            catch(Exception ex)
-            {
-
-            }
-            finally
-            {
-                
-            }
+            // Erfolgreiche Authentifizierung: Weiterleitung oder andere Aktionen.
+            // Zum Beispiel: Navigation zur geschützten Seite.
+            NavigationManager.NavigateTo("/Components/Home");
+        }
+        else
+        {
+            // Fehlerhafte Anmeldeinformationen: Zeigen Sie eine Fehlermeldung an.
+            // Beispielhaft: Einfache Konsolenausgabe.
+            Console.WriteLine("Anmeldung fehlgeschlagen");
         }
     }
 }
