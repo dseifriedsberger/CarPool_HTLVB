@@ -3,33 +3,65 @@
 @page "/Registration"
 <h3>Registrierung</h3>
 @rendermode InteractiveServer
-
-<div>
-    <label class="labelTXT">Dein Vorname:</label>
-    <input class="inputTXT" type ="text" placeholder="Vorname" @bind="user.FirstName" />
-</div>
-<div>
-    <label class="labelTXT">Dein Nachname:</label>
-    <input class="inputTXT" type="text" placeholder="Nachname" @bind="user.LastName" />
-</div>
-<div>
-    <label class="labelTXT">Deine E-Mail Addrese:</label>
-    <input class="inputTXT" type="text" placeholder="E-Mail Adresse" @bind="user.EMailAddress" />
-</div> 
-<div>
-    <label class="labelTXT">Bitte bestätige deine E-Mail Addresse:</label>
-    <input class="inputTXT" type="text" placeholder="E-Mail Adresse bestätigen" @bind="ConfirmEMail" />
-</div>
-<div>
-    <label class="labelTXT">Dein Passwort</label>
-    <input class="inputTXT" placeholder="E-Mail Adresse" @bind="user.Password" type="password" />
-</div>
-<div>
-    <label class="labelTXT">Bitte bestätige dein Passwort:</label>
-    <input class="inputTXT" placeholder="Passwort bestätigen" @bind="ConfirmPassword" type="password" />
-</div>
-<hr />
-<button class="button" @onclick="Registrate" disabled="@IsButtonDisabled">Registrieren</button>
+@*wir miasn nu schaun das de label und textboxn nebneinanda san*@
+    <div class="col-md-8">
+        <label class="labelTXT">Dein Vorname:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" type ="text" placeholder="Vorname" @bind="user.FirstName" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Dein Nachname:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" type="text" placeholder="Nachname" @bind="user.LastName" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Deine E-Mail Addrese:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" type="text" placeholder="E-Mail Adresse" @bind="user.EMailAddress" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Bitte bestätige deine E-Mail Addresse:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" type="text" placeholder="E-Mail Adresse bestätigen" @bind="ConfirmEMail" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Dein Passwort</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" @bind="user.Password" type="password" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Bitte bestätige dein Passwort:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" @bind="ConfirmPassword" type="password" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Name deiner Klasse:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" placeholder="z.B. 5AHWII" @bind="user.SchoolClass" />
+    </div>
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Deine Telefonnummer:</label>
+    </div>
+    <div class="col-md-8">
+        <input class="inputTXT" placeholder="+43 ..." @bind="user.MobileNumber" />
+    </div>
+    <div class="col-md-8">
+        <label class="labelTXT">Bist du Lehrer?</label>
+    </div>
+    <div class="col-md-8">
+        <input type="checkbox" @bind="user.Teacher"  /> 
+    </div>
+    <hr />
+    <button class="button" @onclick="Registrate" disabled="@IsButtonDisabled">Registrieren</button>
 
 @code {
     private User user = new(); 
@@ -56,6 +88,6 @@
         return (string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.EMailAddress) ||
         string.IsNullOrWhiteSpace(ConfirmEMail) || string.IsNullOrWhiteSpace(user.Password) || string.IsNullOrWhiteSpace(ConfirmPassword)) && user.EMailAddress == ConfirmEMail && user.Password == ConfirmPassword && user.EMailAddress.Contains("@");
 
-    }
+    } 
 
 }
